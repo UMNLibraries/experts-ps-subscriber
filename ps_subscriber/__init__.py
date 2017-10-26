@@ -14,7 +14,7 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 handler = RotatingFileHandler(
-  os.getenv('PS_SUBSCRIBER_LOG_FILE'),
+  os.getenv('PS_SUBSCRIBER_LOG'),
   maxBytes=10000,
   backupCount=1
 )
