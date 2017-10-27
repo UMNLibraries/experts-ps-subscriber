@@ -18,13 +18,15 @@ handler = RotatingFileHandler(
   maxBytes=10000,
   backupCount=1
 )
+handler.setFormatter(logging.Formatter(
+  '{asctime} {levelname:8s} {message}', style='{'
+))
 handler.setLevel(logging.INFO)
 app.logger.setLevel(logging.INFO)
 app.logger.addHandler(handler)
 
 @app.route('/', methods=['POST'])
 def person():
-  app.logger.info('testing...')
   app.logger.info(request.data.decode('utf-8'))
   response = jsonify(xmltodict.parse(request.data))
   response.status_code = 201
